@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <title>Мій особистий блог - Команди Git</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background-color: #ffffff;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+    header {
+      background-color: #3498db;
+      color: white;
+      padding: 10px 40px;
+      border-bottom: 4px solid #e74c3c;
+    }
+    .header-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .logo h1 { margin: 0; font-size: 1.6rem; }
+    .logo p { margin: 0; font-size: 0.9rem; font-weight: bold; }
+    .nav-links a {
+      color: white;
+      text-decoration: none;
+      margin-left: 20px;
+      font-weight: bold;
+    }
+    
+    footer {
+      background-color: #2c3e50;
+      color: #bdc3c7;
+      text-align: center;
+      padding: 15px 20px;
+      font-size: 0.85rem;
+      margin-top: auto;
+    }
+
+    .grid-container {
+      flex: 1;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 25px;
+      padding: 30px;
+      max-width: 1400px;
+      margin: 0 auto;
+      box-sizing: border-box;
+    }
+
+    @media (max-width: 1024px) {
+      .grid-container { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 600px) {
+      .grid-container { grid-template-columns: 1fr; }
+    }
+
+    .column h2 {
+      font-size: 1.35rem;
+      margin-top: 0;
+      margin-bottom: 15px;
+    }
+    .col-blue h2 { color: #2980b9; }
+    .col-green h2 { color: #27ae60; }
+    .col-red h2 { color: #c0392b; }
+    .col-orange h2 { color: #d35400; }
+
+    .cmd-group {
+      margin-bottom: 20px;
+    }
+    .cmd-desc {
+      font-size: 0.9rem;
+      color: #555;
+      margin: 0 0 4px 0;
+    }
+    .cmd-code {
+      font-family: 'Courier New', Courier, monospace;
+      font-weight: bold;
+      background-color: #f8f9fa;
+      padding: 4px 8px;
+      display: inline-block;
+      border-radius: 3px;
+      font-size: 0.9rem;
+      color: #000;
+      margin: 0 0 12px 0;
+    }
+    .finally-box {
+      border-top: 2px dashed #d35400;
+      padding-top: 15px;
+      margin-top: 15px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="header-container">
+      <div class="logo">
+        <h1>Мій особистий блог</h1>
+        <p>Артем</p>
+      </div>
+      <div class="nav-links">
+        <a href="#">Вхід</a>
+        <a href="register.html">Реєстрація</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="grid-container">
+    
+    <div class="column col-blue">
+      <h2>Create a Repository</h2>
+      <div class="cmd-group">
+        <p class="cmd-desc">From scratch -- Create a new local repository</p>
+        <p class="cmd-code">$ git init [project_name]</p>
+        
+        <p class="cmd-desc">Download from an existing repository</p>
+        <p class="cmd-code">$ git clone my_url</p>
+      </div>
+
+      <h2>Observe your Repository</h2>
+      <div class="cmd-group">
+        <p class="cmd-desc">List new or modified files not yet committed</p>
+        <p class="cmd-code">$ git status</p>
+        
+        <p class="cmd-desc">Show the changes to files not yet staged</p>
+        <p class="cmd-code">$ git diff</p>
+        
+        <p class="cmd-desc">Show the changes to staged files</p>
+        <p class="cmd-code">$ git diff --cached</p>
+      </div>
+    </div>
+
+    <div class="column col-green">
+      <h2>Working with Branches</h2>
+      <div class="cmd-group">
+        <p class="cmd-desc">List all local branches</p>
+        <p class="cmd-code">$ git branch</p>
+        
+        <p class="cmd-desc">List all branches, local and remote</p>
+        <p class="cmd-code">$ git branch -av</p>
+        
+        <p class="cmd-desc">Switch to a branch, my_branch, and update working directory</p>
+        <p class="cmd-code">$ git checkout my_branch</p>
+        
+        <p class="cmd-desc">Create a new branch called new_branch</p>
+        <p class="cmd-code">$ git branch new_branch</p>
+        
+        <p class="cmd-desc">Delete the branch called my_branch</p>
+        <p class="cmd-code">$ git branch -d my_branch</p>
+      </div>
+    </div>
+
+    <div class="column col-red">
+      <h2>Make a change</h2>
+      <div class="cmd-group">
+        <p class="cmd-desc">Stages the file, ready for commit</p>
+        <p class="cmd-code">$ git add [file]</p>
+        
+        <p class="cmd-desc">Stage all changed files, ready for commit</p>
+        <p class="cmd-code">$ git add .</p>
+        
+        <p class="cmd-desc">Commit all staged files to versioned history</p>
+        <p class="cmd-code">$ git commit -m "commit message"</p>
+        
+        <p class="cmd-desc">Unstages file, keeping the file changes</p>
+        <p class="cmd-code">$ git reset [file]</p>
+        
+        <p class="cmd-desc">Revert everything to the last commit</p>
+        <p class="cmd-code">$ git reset --hard</p>
+      </div>
+    </div>
+
+    <div class="column col-orange">
+      <h2>Synchronize</h2>
+      <div class="cmd-group">
+        <p class="cmd-desc">Get the latest changes from origin (no merge)</p>
+        <p class="cmd-code">$ git fetch</p>
+        
+        <p class="cmd-desc">Fetch the latest changes from origin and merge</p>
+        <p class="cmd-code">$ git pull</p>
+        
+        <p class="cmd-desc">Push local changes to the origin</p>
+        <p class="cmd-code">$ git push</p>
+      </div>
+
+      <div class="finally-box">
+        <h2>Finally!</h2>
+        <p class="cmd-desc">When in doubt, use git help</p>
+        <p class="cmd-code">$ git command --help</p>
+      </div>
+    </div>
+
+  </main>
+
+  <footer>
+    © Всі права захищені.<br>
+    Розробник: студент навчальної групи Артем
+  </footer>
+
+</body>
+</html>
